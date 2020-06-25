@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Wrapper } from "components";
-
+import { Link } from "react-router-dom";
 const Container = styled.div`
   display: flex;
   background-color: ${props => props.theme.color.gray.light};
@@ -18,8 +18,8 @@ const Navigation = ({ items }) => {
       <Wrapper>
         <List>
           {items.map(item => (
-            <li>
-              <a href="#">{item.content}</a>
+            <li key={item.to}>
+              <Link to={item.to}>{item.content}</Link>
             </li>
           ))}
         </List>
