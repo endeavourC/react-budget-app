@@ -1,23 +1,29 @@
-import React from "react";
+import React, { Suspense, Fragment } from "react";
 import GlobalStyles from "./index.css";
 import theme from "utils/theme";
 import { ThemeProvider } from "styled-components";
-import { Navigation } from "components";
+import { Navigation, LoadingIndicator, Wrapper } from "components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-function App() {
-  return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyles />
-      <Router>
-        <Navigation
-          items={[
-            {
-              content: "Homepage",
-              to: "/"
-            },
-            { content: "Budget", to: "/budget" }
-          ]}
-        />
+const App = () => (
+  <Fragment>
+    <GlobalStyles />
+    <Router>
+      <Navigation
+        items={[
+          {
+            content: "Homepage",
+            to: "/"
+          },
+          { content: "Budget", to: "/budget" }
+        ]}
+        RightElement={
+          <div>
+            <button>PL</button>
+            <button>EN</button>
+          </div>
+        }
+      />
+      <Wrapper>
         <Switch>
           <Route exact path="/">
             Homepage
@@ -26,9 +32,19 @@ function App() {
             Budget
           </Route>
         </Switch>
-      </Router>
+      </Wrapper>
+    </Router>
+  </Fragment>
+);
+
+function RootApp() {
+  return (
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<LoadingIndicator />}>
+        <App />
+      </Suspense>
     </ThemeProvider>
   );
 }
 
-export default App;
+export default RootApp;

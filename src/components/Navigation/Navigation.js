@@ -1,21 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { Wrapper } from "components";
+import Wrapper from "../Wrapper";
 import { Link } from "react-router-dom";
-const Container = styled.div`
-  display: flex;
-  background-color: ${props => props.theme.color.gray.light};
-  padding: ${({ theme }) => theme.spacing.sm}px 0;
-  justify-content: space-between;
-`;
+import PropTypes from "prop-types";
 
-const List = styled.ul`
-  display: flex;
-`;
-const Navigation = ({ items }) => {
+const Navigation = ({ items = [], RightElement }) => {
   return (
     <Container>
-      <Wrapper>
+      <NavigationWrapper>
         <List>
           {items.map(item => (
             <li key={item.to}>
@@ -23,9 +15,28 @@ const Navigation = ({ items }) => {
             </li>
           ))}
         </List>
-      </Wrapper>
+        {RightElement}
+      </NavigationWrapper>
     </Container>
   );
 };
 
+Navigation.propTypes = {
+  items: PropTypes.array.isRequired
+};
+
+export const Container = styled.div`
+  display: flex;
+  background-color: ${props => props.theme.color.gray.light};
+  padding: ${({ theme }) => theme.spacing.sm}px 0;
+  justify-content: space-between;
+`;
+
+export const List = styled.ul`
+  display: flex;
+`;
+export const NavigationWrapper = styled(Wrapper)`
+  display: flex;
+  justify-content: space-between;
+`;
 export default Navigation;
