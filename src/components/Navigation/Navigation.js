@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Wrapper from "../Wrapper";
-import { Link } from "react-router-dom";
+import { Button } from "components";
 import PropTypes from "prop-types";
 
 const Navigation = ({ items = [], RightElement }) => {
@@ -11,7 +11,9 @@ const Navigation = ({ items = [], RightElement }) => {
         <List>
           {items.map(item => (
             <li key={item.to}>
-              <Link to={item.to}>{item.content}</Link>
+              <Button variant="inline" to={item.to}>
+                {item.content}
+              </Button>
             </li>
           ))}
         </List>
@@ -38,5 +40,6 @@ export const List = styled.ul`
 export const NavigationWrapper = styled(Wrapper)`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 export default Navigation;

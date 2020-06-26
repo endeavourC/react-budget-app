@@ -2,7 +2,13 @@ import React, { Suspense, Fragment } from "react";
 import GlobalStyles from "./index.css";
 import theme from "utils/theme";
 import { ThemeProvider } from "styled-components";
-import { Navigation, LoadingIndicator, Wrapper } from "components";
+import {
+  Navigation,
+  LoadingIndicator,
+  Wrapper,
+  Button,
+  HomePage
+} from "components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 const App = () => (
   <Fragment>
@@ -18,15 +24,15 @@ const App = () => (
         ]}
         RightElement={
           <div>
-            <button>PL</button>
-            <button>EN</button>
+            <Button>PL</Button>
+            <Button>EN</Button>
           </div>
         }
       />
       <Wrapper>
         <Switch>
           <Route exact path="/">
-            Homepage
+            <HomePage />
           </Route>
           <Route exact path="/budget">
             Budget
