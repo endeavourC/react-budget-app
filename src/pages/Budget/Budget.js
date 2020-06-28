@@ -8,6 +8,8 @@ import { fetchAllCategories } from "data/actions/common.actions";
 import { Grid } from "./Budget.css";
 import { LoadingIndicator } from "components";
 import BudgetCategoryList from "pages/Budget/components/BudgetCategoryList";
+import { LOADING_STATES } from "data/constants";
+import BudgetTransactionList from "./components/BudgetTransactionList";
 const Budget = ({
   commonState,
   budgetState,
@@ -33,10 +35,11 @@ const Budget = ({
   return (
     <Grid>
       <section>
-        {" "}
-        {isLoaded ? <BudgetCategoryList /> : <LoadingIndicator />}{" "}
+        {isLoaded ? <BudgetCategoryList /> : <LoadingIndicator />}
       </section>
-      <section>{isLoaded ? "Transaction List" : <LoadingIndicator />} </section>
+      <section>
+        {isLoaded ? <BudgetTransactionList /> : <LoadingIndicator />}
+      </section>
     </Grid>
   );
 };
