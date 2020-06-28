@@ -1,7 +1,7 @@
 import {
   BUDGET_GET_REQUEST,
-  BUDGET_GET_FAILURE,
   BUDGET_GET_SUCCESS,
+  BUDGET_GET_FAILURE,
   BUDGETED_CATEGORIES_GET_REQUEST,
   BUDGETED_CATEGORIES_GET_SUCCESS,
   BUDGETED_CATEGORIES_GET_FAILURE
@@ -9,6 +9,12 @@ import {
 import API from "data/fetch";
 
 export const fetchBudget = id => async dispatch => {
+  // const promise = await API.budget.fetchBudget(id);
+  // dispatch({
+  //   type: BUDGET_GET_REQUEST,
+  //   promise
+  // });
+
   dispatch({
     type: BUDGET_GET_REQUEST
   });
