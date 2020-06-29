@@ -4,7 +4,12 @@ import {
   BUDGET_GET_FAILURE,
   BUDGETED_CATEGORIES_GET_REQUEST,
   BUDGETED_CATEGORIES_GET_SUCCESS,
-  BUDGETED_CATEGORIES_GET_FAILURE
+  BUDGETED_CATEGORIES_GET_FAILURE,
+  SET_SELECTED_PARENT_CATEGORY_ID,
+  BUDGET_TRANSACTION_ADD,
+  BUDGET_TRANSACTION_ADD_REQUEST,
+  BUDGET_TRANSACTION_ADD_SUCCESS,
+  BUDGET_TRANSACTION_ADD_FAILURE
 } from "data/constants";
 import API from "data/fetch";
 
@@ -48,6 +53,36 @@ export const fetchBudgetedCategories = id => async dispatch => {
   } catch {
     dispatch({
       type: BUDGETED_CATEGORIES_GET_FAILURE
+    });
+  }
+};
+
+export const selectParentCategory = id => {
+  return {
+    type: SET_SELECTED_PARENT_CATEGORY_ID,
+    payload: id
+  };
+};
+
+export const addTransaction = ({ budgetId, data }) => async dispatch => {
+  dispatch({
+    type: BUDGET_TRANSACTION_ADD_REQUEST
+  });
+  try {
+    const promise = await API.budget.addTransaction({
+      budgetId,
+      data
+    });
+    const response = await promise.json();
+    console.log(response);
+    dispatch({
+      type: BUDGET_TRANSACTION_ADD_SUCCESS,
+      payload: response,
+      successMessage: "Transaction has been added!"
+    });
+  } catch {
+    dispatch({
+      type: BUDGET_TRANSACTION_ADD_FAILURE
     });
   }
 };

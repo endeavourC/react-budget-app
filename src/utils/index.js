@@ -7,6 +7,11 @@ export const formatCurrency = value => {
   }).format(number);
 };
 
+export const formatDate = string => {
+  const date = new Date(string);
+
+  return new Intl.DateTimeFormat("pl").format(date);
+};
 export const arraysMatch = (arr1, arr2) => {
   // Check if the arrays are the same length
   if (arr1.length !== arr2.length) return false;

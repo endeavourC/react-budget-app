@@ -7,7 +7,7 @@ export const List = styled.ul`
 `;
 
 export const ListItem = styled.li`
-  border: 1px solid ${({ theme }) => theme.colors.gray.dark};
+  border: 1px solid ${({ theme }) => theme.color.gray.dark};
   padding: ${({ theme }) => theme.spacing.xs}px;
   display: flex;
   justify-content: space-between;

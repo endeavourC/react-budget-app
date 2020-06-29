@@ -30,7 +30,6 @@ const common = (state = initialState, action) => {
       };
     case ALL_CATEGORIES_GET_FAILURE:
       delete newLoadingState.ALL_CATEGORIES_GET_REQUEST;
-
       return {
         ...state,
         allCategories: {},

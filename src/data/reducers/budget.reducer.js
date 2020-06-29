@@ -5,13 +5,17 @@ import {
   BUDGETED_CATEGORIES_GET_REQUEST,
   BUDGETED_CATEGORIES_GET_SUCCESS,
   BUDGETED_CATEGORIES_GET_FAILURE,
-  LOADING_STATES
+  SET_SELECTED_PARENT_CATEGORY_ID,
+  LOADING_STATES,
+  BUDGET_TRANSACTION_ADD_SUCCESS,
+  BUDGET_TRANSACTION_ADD_REQUEST
 } from "data/constants";
 
 const initialState = {
   loadingState: null,
   budget: {},
-  budgetedCategories: []
+  budgetedCategories: [],
+  selectedParentCategoryId: undefined
 };
 
 const budget = (state = initialState, action) => {
@@ -63,6 +67,31 @@ const budget = (state = initialState, action) => {
         budgetedCategories: {},
         loadingState: newLoadingState
       };
+    case SET_SELECTED_PARENT_CATEGORY_ID:
+      return {
+        ...state,
+        selectedParentCategoryId: action.payload
+      };
+
+    case BUDGET_TRANSACTION_ADD_REQUEST:
+      return {
+        ...state,
+        loadingState: {
+          ...state.loadingState,
+          [action.type]: LOADING_STATES.LOADING
+        }
+      };
+    case BUDGET_TRANSACTION_ADD_SUCCESS:
+      delete newLoadingState.BUDGET_TRANSACTION_ADD_REQUEST;
+      return {
+        ...state,
+        budget: {
+          ...state.budget,
+          transactions: [...state.budget.transactions, action.payload]
+        },
+        loadingState: newLoadingState
+      };
+
     default:
       return state;
   }

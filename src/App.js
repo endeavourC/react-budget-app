@@ -6,6 +6,9 @@ import { Navigation, LoadingIndicator, Wrapper, Button } from "components";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import HomePage from "pages/HomePage";
 import BudgetPage from "pages/Budget";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+toast.configure();
 
 const App = () => {
   return (
@@ -32,7 +35,7 @@ const App = () => {
             <Route exact path="/">
               <HomePage />
             </Route>
-            <Route exact path="/budget">
+            <Route path="/budget">
               <BudgetPage />
             </Route>
           </Switch>
